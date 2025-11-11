@@ -102,6 +102,7 @@ from .animesh import *
 from . import mapper
 from .mapper import *
 from . import globals
+from . import tools
 from . import onemap
 from . import snap
 from . import splice
@@ -61238,11 +61239,17 @@ def register():
     
     bpy.types.WindowManager.oni_joints = bpy.props.PointerProperty(type=OnigiriJointControlProperties)
     
+    # Register tools module
+    tools.register()
+    
     ico.load_icons()
 
 def unregister():
 
     print("Onigiri: cleanup")
+    
+    # Unregister tools module
+    tools.unregister()
 
     from bpy.utils import unregister_class
     for cls in reversed(classes):
